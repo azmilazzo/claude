@@ -52,6 +52,8 @@ The application uses Piper TTS via the Sherpa-ONNX WebAssembly engine for text-t
 
     **Warning:** Without these actual files, the TTS functionality will fail, and you may see errors in the browser console or chat window related to TTS initialization.
 
+    **Important Note on Errors:** If you see an error in your browser's console like `SherpaOnnx is not loaded` or `TTS library not loaded` when the page loads, it typically means the main Sherpa-ONNX JavaScript library (`sherpa-onnx-wasm-main-tts.js`) was not found or did not execute correctly. This is **expected** if you are using the placeholder files currently in this repository. You must replace these placeholders with the actual files downloaded from the k2-fsa Hugging Face space for TTS functionality to be enabled.
+
 ### Uploading the Files to Your GitHub Repository
 
 Once you have downloaded the Sherpa-ONNX and voice model files to your computer, you need to add them to the root directory of your GitHub repository. Here are a few common ways to do this:
@@ -121,6 +123,7 @@ You can change these to match your site's URL and desired application title.
 *   Initial TTS model loading might take a few moments.
 *   Performance may vary based on browser and device.
 *   The CSS style for `#message-input-area` in `style.css` might be unused or intended for a future HTML structure, as no element currently uses this ID.
+*   The JavaScript console error `SherpaOnnx is not loaded` (or similar, indicating the TTS library failed to load) will appear if placeholder TTS files are used instead of the actual Sherpa-ONNX library downloaded from Hugging Face.
 
 ## Technologies Used
 
