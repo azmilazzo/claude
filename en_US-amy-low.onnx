@@ -1,7 +1,3 @@
-// Placeholder for Sherpa-ONNX TTS model (e.g., en_US-amy-low.onnx).
-// This file should be downloaded from:
-// https://huggingface.co/spaces/k2-fsa/web-assembly-tts-sherpa-onnx-en/resolve/main/en_US-amy-low.onnx
-// This is a binary file containing the neural network model for TTS.
-// This placeholder is for tracking purposes.
-// Ensure the actual .onnx file is present in the root directory for the application to work.
-// Content: (Binary Data)
+version https://git-lfs.github.com/spec/v1
+oid sha256:a5a91abb7de0f104358a25aded480ddacf1ff0762886325886ec406a2e86aab3
+size 63104526
