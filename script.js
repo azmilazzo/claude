@@ -105,8 +105,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // 6. TTS Engine Initialization
     async function initTtsEngine() {
         if (typeof SherpaOnnx === 'undefined') {
-            console.error("SherpaOnnx is not loaded. Ensure sherpa-onnx-wasm-main.js is included and has loaded.");
-            displayAiMessage("Error: TTS library not loaded. Check console.", true);
+            console.error("SherpaOnnx is not loaded. Ensure sherpa-onnx-wasm-main-tts.js is included and has loaded correctly.");
+            displayAiMessage("Error: TTS library (SherpaOnnx) not loaded. This is expected if using placeholder files. Please ensure the actual Sherpa-ONNX JS file from Hugging Face is downloaded and correctly linked in index.html.", true);
             return;
         }
         if (tts) {
