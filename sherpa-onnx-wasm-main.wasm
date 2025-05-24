@@ -1,7 +1,10 @@
-// Placeholder for Sherpa-ONNX WASM binary.
-// This file should be downloaded from:
-// https://huggingface.co/spaces/k2-fsa/web-assembly-tts-sherpa-onnx-en/raw/main/sherpa-onnx-wasm-main.wasm
+
+// Placeholder for the CORE Sherpa-ONNX WASM binary.
+// This file might be required by some versions of Sherpa-ONNX alongside the TTS-specific WASM.
+// It should be downloaded from:
+// https://huggingface.co/spaces/k2-fsa/web-assembly-tts-sherpa-onnx-en/tree/main
+// (or the appropriate source for the Sherpa-ONNX version being used)
 // This is a binary file and cannot be represented as text.
 // This placeholder is for tracking purposes.
-// Ensure the actual .wasm file is present in the root directory for the application to work.
+// Ensure the actual .wasm file is present in the root directory if required.
 // Content: (Binary Data)
