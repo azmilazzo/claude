@@ -1,3 +1,4 @@
+
 // Placeholder for the CORE Sherpa-ONNX WASM binary.
 // This file might be required by some versions of Sherpa-ONNX alongside the TTS-specific WASM.
 // It should be downloaded from:
