@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // TTS Configuration
     let tts; // Will hold the WebAssembly TTS engine
     let audioContext; // For playing raw audio data
+    let ttsEngineInitialized = false; // Flag to ensure TTS engine init logic runs once
     const ttsModelConfig = {
         model: './en_US-amy-low.onnx',
         lexicon: './lexicon.txt',
@@ -104,15 +105,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 6. TTS Engine Initialization
     async function initTtsEngine() {
+        if (ttsEngineInitialized) {
+            console.log("TTS init function called but an attempt (success or fail) was already made. Skipping duplicate run.");
+            return;
+        }
+        ttsEngineInitialized = true; // Mark that an attempt is now in progress.
+
         if (typeof SherpaOnnx === 'undefined') {
             console.error("SherpaOnnx is not loaded. Ensure sherpa-onnx-wasm-main-tts.js is included and has loaded correctly.");
             displayAiMessage("Error: TTS library (SherpaOnnx) not loaded. This is expected if using placeholder files. Please ensure the actual Sherpa-ONNX JS file from Hugging Face is downloaded and correctly linked in index.html.", true);
+            // Note: ttsEngineInitialized remains true, as an attempt was made.
             return;
         }
-        if (tts) {
-            console.log("TTS Engine already initialized.");
-            return;
-        }
+        // Note: The 'if (tts)' check for already initialized TTS instance is removed here
+        // because ttsEngineInitialized flag now gates the entire function logic.
+        // If tts is already set, it implies a successful previous run, which ttsEngineInitialized should reflect.
 
         try {
             console.log("Initializing TTS Engine with config:", ttsModelConfig);
@@ -160,29 +167,53 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function waitForSherpaOnnxAndInit() {
-        const maxRetries = 200; // Increased to 200 for a ~20 second timeout (200 * 100ms) to allow more time for WASM loading.
+        const maxRetries = 200; // Increased to 200 for a ~20 second timeout (200 * 100ms)
         const retryInterval = 100; // milliseconds
         let currentRetry = 0;
 
         function tryInit() {
             if (typeof SherpaOnnx !== 'undefined') {
-                console.log("SherpaOnnx object found. Initializing TTS engine.");
-                initTtsEngine();
+                console.log("SherpaOnnx object found via polling. Initializing TTS engine.");
+                initTtsEngine(); // initTtsEngine will check ttsEngineInitialized flag
             } else if (currentRetry < maxRetries) {
                 currentRetry++;
-                console.log(`SherpaOnnx not ready, retrying (${currentRetry}/${maxRetries})...`);
+                console.log(`SherpaOnnx not ready (polling), retrying (${currentRetry}/${maxRetries})...`);
                 setTimeout(tryInit, retryInterval);
             } else {
-                console.error("SherpaOnnx object did not become available after multiple retries. TTS will not function.");
-                // The existing error message in initTtsEngine will also be displayed if SherpaOnnx is still undefined there,
-                // but this provides an earlier, specific timeout message.
-                // We can also call displayAiMessage here if desired, though initTtsEngine already does.
-                // For robustness, let initTtsEngine handle its own check and display message.
-                // Just to be safe, in case initTtsEngine is called from elsewhere later.
-                initTtsEngine(); // Call it one last time; it will display the error message.
+                console.error("SherpaOnnx object did not become available after polling. TTS will not function if Module.onRuntimeInitialized also fails or isn't used.");
+                // Call initTtsEngine one last time to ensure error messages are displayed if SherpaOnnx is still not defined.
+                // The ttsEngineInitialized flag will prevent duplicate execution of core logic.
+                initTtsEngine();
             }
         }
-        tryInit(); // Start the polling
+
+        // Attempt to use Module.onRuntimeInitialized if available
+        // This is a common pattern for Emscripten-compiled WebAssembly modules.
+        if (typeof Module !== 'undefined' && typeof Module.onRuntimeInitialized === 'function') {
+            // This condition implies Module.onRuntimeInitialized is already set by SherpaOnnx or another script.
+            // This is less common for SherpaOnnx which usually expects *us* to define it.
+            // If SherpaOnnx defines it, it might call its own internal init, then our hook (if it supports chaining).
+            // Or it might expect us *not* to define it if it has its own.
+            // For now, we'll log a warning and rely on our polling as the primary mechanism if this is pre-defined.
+            console.warn('Module.onRuntimeInitialized is already defined. Polling will be the primary method for TTS initialization.');
+             tryInit(); // Start polling as primary method
+        } else if (typeof Module !== 'undefined' && typeof Module.onRuntimeInitialized === 'undefined') {
+            console.log('Setting up Module.onRuntimeInitialized for SherpaOnnx.');
+            Module.onRuntimeInitialized = function() {
+                console.log('Module.onRuntimeInitialized has been called.');
+                initTtsEngine(); // Call initTtsEngine directly
+            };
+            // Polling can still run as a fallback if onRuntimeInitialized doesn't fire for some reason
+            // or if SherpaOnnx becomes available before onRuntimeInitialized.
+            // However, the ttsEngineInitialized flag in initTtsEngine should prevent redundant actual initializations.
+            // Let's start polling slightly delayed or not at all if we trust onRuntimeInitialized.
+            // For max robustness, let's still poll, initTtsEngine will sort it out.
+            setTimeout(tryInit, retryInterval * 5); // Start polling after a short delay, giving onRuntimeInitialized a chance
+        } else {
+            // Module object doesn't exist, so onRuntimeInitialized cannot be used. Rely solely on polling.
+            console.log('Module object not found. Relying solely on polling for SherpaOnnx availability.');
+            tryInit();
+        }
     }
 
     // 7. Play TTS Audio
@@ -390,7 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function waitForSherpaOnnxAndInit() {
-        const maxRetries = 200; // e.g., 50 * 100ms = 5 seconds
+        const maxRetries = 50; // e.g., 50 * 100ms = 5 seconds
         const retryInterval = 100; // milliseconds
         let currentRetry = 0;
 
