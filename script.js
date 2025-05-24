@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function waitForSherpaOnnxAndInit() {
-        const maxRetries = 50; // e.g., 50 * 100ms = 5 seconds
+        const maxRetries = 200; // Increased to 200 for a ~20 second timeout (200 * 100ms) to allow more time for WASM loading.
         const retryInterval = 100; // milliseconds
         let currentRetry = 0;
 
