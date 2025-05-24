@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chat</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app-container">
+        <div id="chat-messages"></div>
+        <input type="text" id="message-input" placeholder="Type your message...">
+        <button id="send-button">Send</button>
+        <button id="settings-button">⚙</button>
+        <div id="settings-panel">
+            <h2>Settings</h2>
+            <div>
+                <label for="api-key-input">OpenRouter API Key:</label>
+                <input type="text" id="api-key-input">
+            </div>
+            <div>
+                <label for="system-prompt-textarea">System Prompt:</label>
+                <textarea id="system-prompt-textarea"></textarea>
+            </div>
+            <div>
+                <input type="checkbox" id="tts-enabled-checkbox">
+                <label for="tts-enabled-checkbox">Enable TTS</label>
+            </div>
+            <!-- Placeholder for voice selection dropdown -->
+            <button id="save-settings-button">Save Settings</button>
+        </div>
+    </div>
+    <script src="sherpa-onnx-wasm-main.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

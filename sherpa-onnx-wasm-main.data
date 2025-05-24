@@ -1,0 +1,8 @@
+// Placeholder for Sherpa-ONNX WASM data file.
+// This file should be downloaded from:
+// https://huggingface.co/spaces/k2-fsa/web-assembly-tts-sherpa-onnx-en/raw/main/sherpa-onnx-wasm-main.data
+// This file often contains pre-compiled data or assets for the WASM module.
+// Its content is specific to the Sherpa-ONNX build and cannot be generically represented as text.
+// This placeholder is for tracking purposes.
+// Ensure the actual .data file is present in the root directory for the application to work.
+// Content: (Binary or Specific Format Data)
