@@ -390,7 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function waitForSherpaOnnxAndInit() {
-        const maxRetries = 50; // e.g., 50 * 100ms = 5 seconds
+        const maxRetries = 200; // e.g., 50 * 100ms = 5 seconds
         const retryInterval = 100; // milliseconds
         let currentRetry = 0;
 
