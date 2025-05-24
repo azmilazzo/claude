@@ -1,151 +1,420 @@
 {
-  "model_type": "vits",
-  "normalize_type": "monotonic_align",
-  "text_cleaner_name": "english_cleaners_v2",
-  "sample_rate": 22050,
-  "n_speakers": 1,
-  "speaker_id_map": {
-    "amy": 0
+  "audio": {
+    "sample_rate": 16000,
+    "quality": "low"
   },
-  "data": {
-    "training_files": "filelists/vctk_train.txt.cleaned",
-    "validation_files": "filelists/vctk_valid.txt.cleaned",
-    "text_cleaners": ["english_cleaners_v2"],
-    "n_speakers": 1,
-    "n_sqz": 2,
-    "max_wav_value": 32768.0,
-    "sampling_rate": 22050,
-    "filter_length": 1024,
-    "hop_length": 256,
-    "win_length": 1024,
-    "n_mel_channels": 80,
-    "mel_fmin": 0.0,
-    "mel_fmax": null,
-    "add_blank": true,
-    "n_speakers": 1,
-    "cleaned_text": true,
-    "symbols": [
-      "_",
-      "^",
-      "$",
-      " ",
-      "!",
-      "'",
-      "(",
-      ")",
-      ",",
-      "-",
-      ".",
-      ":",
-      ";",
-      "?",
-      "a",
-      "b",
-      "c",
-      "d",
-      "e",
-      "f",
-      "g",
-      "h",
-      "i",
-      "j",
-      "k",
-      "l",
-      "m",
-      "n",
-      "o",
-      "p",
-      "q",
-      "r",
-      "s",
-      "t",
-      "u",
-      "v",
-      "w",
-      "x",
-      "y",
-      "z",
-      "A",
-      "B",
-      "C",
-      "D",
-      "E",
-      "F",
-      "G",
-      "H",
-      "I",
-      "J",
-      "K",
-      "L",
-      "M",
-      "N",
-      "O",
-      "P",
-      "Q",
-      "R",
-      "S",
-      "T",
-      "U",
-      "V",
-      "W",
-      "X",
-      "Y",
-      "Z",
-      "ä",
-      "ö",
-      "ü",
-      "ß",
-      "æ",
-      "ç",
-      "è",
-      "é",
-      "ê",
-      "ə",
-      "ʃ",
-      "ː",
-      "ɡ",
-      "ɪ",
-      "ɾ",
-      "ʊ",
-      "ʒ",
-      "ð",
-      "ŋ",
-      "ɒ",
-      "ɔ",
-      "ɑ",
-      "ɛ",
-      "ɜ",
-      "ɹ",
-      "j",
-      "ɐ",
-      "…"
+  "espeak": {
+    "voice": "en-us"
+  },
+  "inference": {
+    "noise_scale": 0.667,
+    "length_scale": 1,
+    "noise_w": 0.8
+  },
+  "phoneme_map": {},
+  "phoneme_id_map": {
+    "_": [
+      0
+    ],
+    "^": [
+      1
+    ],
+    "$": [
+      2
+    ],
+    " ": [
+      3
+    ],
+    "!": [
+      4
+    ],
+    "'": [
+      5
+    ],
+    "(": [
+      6
+    ],
+    ")": [
+      7
+    ],
+    ",": [
+      8
+    ],
+    "-": [
+      9
+    ],
+    ".": [
+      10
+    ],
+    ":": [
+      11
+    ],
+    ";": [
+      12
+    ],
+    "?": [
+      13
+    ],
+    "a": [
+      14
+    ],
+    "b": [
+      15
+    ],
+    "c": [
+      16
+    ],
+    "d": [
+      17
+    ],
+    "e": [
+      18
+    ],
+    "f": [
+      19
+    ],
+    "h": [
+      20
+    ],
+    "i": [
+      21
+    ],
+    "j": [
+      22
+    ],
+    "k": [
+      23
+    ],
+    "l": [
+      24
+    ],
+    "m": [
+      25
+    ],
+    "n": [
+      26
+    ],
+    "o": [
+      27
+    ],
+    "p": [
+      28
+    ],
+    "q": [
+      29
+    ],
+    "r": [
+      30
+    ],
+    "s": [
+      31
+    ],
+    "t": [
+      32
+    ],
+    "u": [
+      33
+    ],
+    "v": [
+      34
+    ],
+    "w": [
+      35
+    ],
+    "x": [
+      36
+    ],
+    "y": [
+      37
+    ],
+    "z": [
+      38
+    ],
+    "æ": [
+      39
+    ],
+    "ç": [
+      40
+    ],
+    "ð": [
+      41
+    ],
+    "ø": [
+      42
+    ],
+    "ħ": [
+      43
+    ],
+    "ŋ": [
+      44
+    ],
+    "œ": [
+      45
+    ],
+    "ǀ": [
+      46
+    ],
+    "ǁ": [
+      47
+    ],
+    "ǂ": [
+      48
+    ],
+    "ǃ": [
+      49
+    ],
+    "ɐ": [
+      50
+    ],
+    "ɑ": [
+      51
+    ],
+    "ɒ": [
+      52
+    ],
+    "ɓ": [
+      53
+    ],
+    "ɔ": [
+      54
+    ],
+    "ɕ": [
+      55
+    ],
+    "ɖ": [
+      56
+    ],
+    "ɗ": [
+      57
+    ],
+    "ɘ": [
+      58
+    ],
+    "ə": [
+      59
+    ],
+    "ɚ": [
+      60
+    ],
+    "ɛ": [
+      61
+    ],
+    "ɜ": [
+      62
+    ],
+    "ɞ": [
+      63
+    ],
+    "ɟ": [
+      64
+    ],
+    "ɠ": [
+      65
+    ],
+    "ɡ": [
+      66
+    ],
+    "ɢ": [
+      67
+    ],
+    "ɣ": [
+      68
+    ],
+    "ɤ": [
+      69
+    ],
+    "ɥ": [
+      70
+    ],
+    "ɦ": [
+      71
+    ],
+    "ɧ": [
+      72
+    ],
+    "ɨ": [
+      73
+    ],
+    "ɪ": [
+      74
+    ],
+    "ɫ": [
+      75
+    ],
+    "ɬ": [
+      76
+    ],
+    "ɭ": [
+      77
+    ],
+    "ɮ": [
+      78
+    ],
+    "ɯ": [
+      79
+    ],
+    "ɰ": [
+      80
+    ],
+    "ɱ": [
+      81
+    ],
+    "ɲ": [
+      82
+    ],
+    "ɳ": [
+      83
+    ],
+    "ɴ": [
+      84
+    ],
+    "ɵ": [
+      85
+    ],
+    "ɶ": [
+      86
+    ],
+    "ɸ": [
+      87
+    ],
+    "ɹ": [
+      88
+    ],
+    "ɺ": [
+      89
+    ],
+    "ɻ": [
+      90
+    ],
+    "ɽ": [
+      91
+    ],
+    "ɾ": [
+      92
+    ],
+    "ʀ": [
+      93
+    ],
+    "ʁ": [
+      94
+    ],
+    "ʂ": [
+      95
+    ],
+    "ʃ": [
+      96
+    ],
+    "ʄ": [
+      97
+    ],
+    "ʈ": [
+      98
+    ],
+    "ʉ": [
+      99
+    ],
+    "ʊ": [
+      100
+    ],
+    "ʋ": [
+      101
+    ],
+    "ʌ": [
+      102
+    ],
+    "ʍ": [
+      103
+    ],
+    "ʎ": [
+      104
+    ],
+    "ʏ": [
+      105
+    ],
+    "ʐ": [
+      106
+    ],
+    "ʑ": [
+      107
+    ],
+    "ʒ": [
+      108
+    ],
+    "ʔ": [
+      109
+    ],
+    "ʕ": [
+      110
+    ],
+    "ʘ": [
+      111
+    ],
+    "ʙ": [
+      112
+    ],
+    "ʛ": [
+      113
+    ],
+    "ʜ": [
+      114
+    ],
+    "ʝ": [
+      115
+    ],
+    "ʟ": [
+      116
+    ],
+    "ʡ": [
+      117
+    ],
+    "ʢ": [
+      118
+    ],
+    "ʲ": [
+      119
+    ],
+    "ˈ": [
+      120
+    ],
+    "ˌ": [
+      121
+    ],
+    "ː": [
+      122
+    ],
+    "ˑ": [
+      123
+    ],
+    "˞": [
+      124
+    ],
+    "β": [
+      125
+    ],
+    "θ": [
+      126
+    ],
+    "χ": [
+      127
+    ],
+    "ᵻ": [
+      128
+    ],
+    "ⱱ": [
+      129
     ]
   },
-  "vits_model": {
-    "inter_channels": 192,
-    "hidden_channels": 192,
-    "filter_channels": 768,
-    "n_heads": 2,
-    "n_layers": 6,
-    "kernel_size": 3,
-    "p_dropout": 0.1,
-    "resblock": "1",
-    "resblock_kernel_sizes": [3, 7, 11],
-    "resblock_dilation_sizes": [[1, 3, 5], [1, 3, 5], [1, 3, 5]],
-    "upsample_rates": [8, 8, 2, 2],
-    "upsample_initial_channel": 512,
-    "upsample_kernel_sizes": [16, 16, 4, 4],
-    "n_layers_q": 3,
-    "use_spectral_norm": false,
-    "use_sdp": true
+  "num_symbols": 130,
+  "num_speakers": 1,
+  "speaker_id_map": {},
+  "piper_version": "0.2.0",
+  "language": {
+    "code": "en_US",
+    "family": "en",
+    "region": "US",
+    "name_native": "English",
+    "name_english": "English",
+    "country_english": "United States"
   },
-  "speaker": "amy",
-  "version": "1.0.0"
+  "dataset": "amy"
 }
-// Placeholder for Sherpa-ONNX TTS model config (e.g., en_US-amy-low.onnx.json).
-// This file should be downloaded from:
-// https://huggingface.co/spaces/k2-fsa/web-assembly-tts-sherpa-onnx-en/raw/main/en_US-amy-low.onnx.json
-// This JSON file contains configuration details for the TTS model.
-// The content above is a typical structure for such a file, but the actual values
-// might differ based on the model.
-// Ensure the actual .onnx.json file is present in the root directory.
