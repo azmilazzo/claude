@@ -36,13 +36,17 @@ The application uses Piper TTS via the Sherpa-ONNX WebAssembly engine for text-t
     *   [https://huggingface.co/spaces/k2-fsa/web-assembly-tts-sherpa-onnx-en/tree/main](https://huggingface.co/spaces/k2-fsa/web-assembly-tts-sherpa-onnx-en/tree/main)
 
 2.  From the "Files" section of the Hugging Face space, download the following files:
-    *   `sherpa-onnx-wasm-main.js`
-    *   `sherpa-onnx-wasm-main.wasm`
-    *   `sherpa-onnx-wasm-main.data`
-    *   `en_US-amy-low.onnx` (This is the Amy voice model)
-    *   `en_US-amy-low.onnx.json` (Configuration for the Amy voice model)
+    *   `sherpa-onnx-wasm-main-tts.js` (Main JavaScript loader for TTS)
+    *   `sherpa-onnx-wasm-main-tts.wasm` (Primary WASM for TTS)
+    *   `sherpa-onnx-wasm-main-tts.data` (Data for the TTS WASM)
+    *   `sherpa-onnx-wasm-main.wasm` (This is often a separate core WASM. Download all relevant `.wasm` files from the k2-fsa TTS directory if unsure.)
+    *   Voice model files:
+        *   `en_US-amy-low.onnx`
+        *   `en_US-amy-low.onnx.json`
     *   `lexicon.txt`
     *   `tokens.txt`
+
+    **Note:** The exact filenames for the Sherpa-ONNX core WebAssembly modules can sometimes vary or include additional files. Please ensure you download all necessary `.js`, `.wasm`, and `.data` files listed in the k2-fsa Hugging Face TTS space for the version you are using.
 
 3.  **Place these downloaded files into the root directory** of this project, replacing the existing placeholder files with the same names.
 
