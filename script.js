@@ -310,3 +310,4 @@ document.addEventListener('DOMContentLoaded', () => {
     loadSettings();
     initTtsEngine(); // Initialize TTS engine on page load
 });
+
